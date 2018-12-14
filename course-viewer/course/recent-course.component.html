@@ -1,0 +1,28 @@
+<h3>Recently Viewed Courses</h3>
+<div ng-if="!vm.authenticationService.loggedIn">
+    You need to log in
+</div>
+<div ng-if="vm.authenticationService.loggedIn">
+    <div ng-if="vm.recentlyViewed == null || vm.recentlyViewed.length == 0">
+        You have not viewed any course yet.
+    </div>
+    <div ng-if="vm.recentlyViewed">
+        <button class="btn btn-primary" ng-click="vm.clearList()">Clear</button>
+        <div class="row">
+            <div class="col-md-5"><h4>Course Name</h4></div>
+            <div class="col-md-3"><h4>Author</h4></div>
+            <div class="col-md-5"><h4>Viewed On</h4></div>
+        </div>
+        <div ng-repeat="recent in vm.recentlyViewed">
+            <div class="col-md-5">
+                <a ui-sref="course({ courseId: recent.CourseId })" href>{{ recent.Course.CourseName }}</a>
+            </div>
+            <div class="col-md-3">
+                <a ui-sref="author({ authorId: recent.Course.AuthorId })" href>{{ recent.Course.Author.FirstName }} {{ recent.Course.Author.LastName }}</a>
+            </div>
+            <div class="col-md-3">
+                {{ recent.ViewedOn | date: 'medium' }}
+            </div>
+        </div>
+    </div>
+</div>

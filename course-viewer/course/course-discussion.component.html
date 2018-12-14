@@ -1,0 +1,16 @@
+<div ng-if="vm.authenticationService.loggedIn">
+    <h4>Course Discussion</h4>
+    <course-discussion-list course-discussion="vm.courseDiscussion"></course-discussion-list>
+    <hr>
+    <div class="row">
+        <div class="col-md-12">
+            <button type="button" class="btn btn-primary" ng-show="vm.commentEntryVisible == false" ng-click="vm.showCommentEntry()">
+                Add Comment
+            </button>
+        </div>
+    </div>
+    <course-discussion-item ng-show="vm.commentEntryVisible" comment-submited="vm.commentSubmited" comment-cancelled="vm.commentCancelled"></course-discussion-item>
+</div>
+<div ng-if="!vm.authenticationService.loggedIn">
+    You need to Log In.
+</div>
